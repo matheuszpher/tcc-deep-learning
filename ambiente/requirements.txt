@@ -1,0 +1,8 @@
+aeon==1.6.0
+tensorflow
+scikit-learn
+pandas
+pyarrow
+matplotlib
+pytest
+# Linux/WSL com GPU: trocar "tensorflow" por "tensorflow[and-cuda]"

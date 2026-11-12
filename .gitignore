@@ -1,0 +1,15 @@
+# Repositório público: só código. Ficam fora dados, resultados, artigos e textos do TCC.
+*
+!.gitignore
+!.gitattributes
+!README.md
+!ambiente/
+!ambiente/**
+!experimentos/
+!experimentos/**
+!tests/
+!tests/**
+!codigo-referencia/
+!codigo-referencia/**
+__pycache__/
+*.pyc
