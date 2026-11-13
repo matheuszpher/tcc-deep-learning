@@ -205,7 +205,7 @@ Tudo em `OUT/`. Os CSVs da raiz são reconstruídos a partir de `pares/` a cada 
 compilação), `epoch_median_s`, `latent_time_s`, `ksearch_time_s`, `n_k`, `recon_loss_min`,
 `recon_loss_last`, `recon_mse`, `lr_final`, `gpu_mem_peak_mb`, `wall_time_s` (tempo total do
 subprocesso), `encoder_check` (confere que `layers[1]` é o codificador), `status`
-(`ok`, `erro`, `erro_processo`, `timeout`, `erro_carga`) e `message`.
+(`ok`, `erro`, `erro_processo`, `timeout`, `erro_carga`; `interrompido` = o agendador parou no meio, o par roda de novo na retomada) e `message`.
 """),
 ]
 

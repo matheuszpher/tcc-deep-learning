@@ -102,7 +102,9 @@ def run(cfg: dict) -> None:
             if st and same_config(st, cfg):
                 if st.get("status") == "ok":
                     continue
-                if not cfg.get("repetir_falhas", False) and st.get("status") != "em_andamento":
+                # interrompido / em_andamento: o agendador parou no meio, entao roda de novo.
+                if (not cfg.get("repetir_falhas", False)
+                        and st.get("status") not in ("em_andamento", "interrompido")):
                     continue
             queue.append((name, model))
     log(f"fila: {len(queue)} pares pendentes", out)
@@ -141,7 +143,8 @@ def run(cfg: dict) -> None:
             except Exception:  # noqa: BLE001
                 pass
             st = {"dataset": name, "model": model,
-                  "status": "timeout" if reason else "erro_processo",
+                  "status": ("timeout" if reason.startswith("timeout") else
+                             "interrompido" if reason else "erro_processo"),
                   "seed": cfg["seed"], "n_epochs": cfg["epochs"],
                   "k_grid": f"{cfg['k_min']}:{cfg['k_max']}:{cfg['k_step']}",
                   "timestamp_fim": datetime.now().isoformat(timespec="seconds"),
