@@ -102,9 +102,10 @@ def run(cfg: dict) -> None:
             if st and same_config(st, cfg):
                 if st.get("status") == "ok":
                     continue
-                # interrompido / em_andamento: o agendador parou no meio, entao roda de novo.
+                # interrompido / em_andamento: o agendador parou no meio; erro_carga: dados
+                # nao baixaram (rede). Nos tres casos o par roda de novo.
                 if (not cfg.get("repetir_falhas", False)
-                        and st.get("status") not in ("em_andamento", "interrompido")):
+                        and st.get("status") not in ("em_andamento", "interrompido", "erro_carga")):
                     continue
             queue.append((name, model))
     log(f"fila: {len(queue)} pares pendentes", out)
